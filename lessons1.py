@@ -1,5 +1,4 @@
 import pydoc
-import math
 #Autor Sabri Eldar
 print('{:-^100}\n'.format('Домашняя работа Сабри Эльдар'))
 
