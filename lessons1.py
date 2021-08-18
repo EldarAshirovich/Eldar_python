@@ -11,24 +11,32 @@ b_int = int('34')
 c_f = float('36.25')
 d_bool = True
 f_dict = {"a_str": a_str, "b_int": b_int, "c_f": c_f, "d_bool": d_bool}
-
 for k, v in f_dict.items():
 	t = str(type(v))
 	print(f"Переменная:{k:^10}  ->  Значение:{v:^30}  -> Тип:{t:^20}\n")
-
 name = input('Введите ваше имя:')
 age = int(input('Укажите ваш возраст:'))
 print("Вы указали:\n  Ваше имя: {0};\n  Ваш возраст: {1};\n".format(name, age))
 print('{:-^100}\n'.format('Конец задания!'))
 
-# End Task 1 ---------------------------------------------------------------------
+End Task 1 ---------------------------------------------------------------------
 
 
-# Start Task 2 -------------------------------------------------------------------
-#Пользователь вводит время в секундах. Переведите время в часы, минуты и секунды и
-# выведите в формате чч:мм:сс. Используйте форматирование строк.
+Start Task 2 -------------------------------------------------------------------
+Пользователь вводит время в секундах. Переведите время в часы, минуты и секунды и
+выведите в формате чч:мм:сс. Используйте форматирование строк.
 
-secs = int(input('Введите время в секундах:'))
+in_txt = 'Введите время в секундах: '
+while True:
+	try:
+		usr_numb = int(input(in_txt))
+		if str(usr_numb).isdigit() and float(usr_numb) == int(usr_numb) and int(usr_numb) > 0:
+			secs = usr_numb
+			break
+		else:
+			raise ValueError
+	except ValueError:
+		print("Неверный ввод! Введите натуральное число!")
 days = secs//86400
 hours = (secs - days*86400)//3600
 minutes = (secs - days*86400 - hours*3600)//60
@@ -44,7 +52,17 @@ print('{:-^100}\n'.format('Конец задания!'))
 # Узнайте у пользователя число n. Найдите сумму чисел n + nn + nnn.
 # Например, пользователь ввёл число 3. Считаем 3 + 33 + 333 = 369.
 
-n = str(input('Ввдеите однозначное число:'))
+in_txt = 'Ввдеите число: '
+while True:
+	try:
+		usr_numb = int(input(in_txt))
+		if str(usr_numb).isdigit() and float(usr_numb) == int(usr_numb) and int(usr_numb) > 0:
+			n = usr_numb
+			break
+		else:
+			raise ValueError
+	except ValueError:
+		print("Неверный ввод! Введите натуральное число!")
 result = int(n) + int(n + n) + int(n + n + n)
 print(f"Сумма {n}+{n+n}+{n+n+n}={result}\n")
 print('{:-^100}\n'.format('Конец задания!'))
@@ -56,14 +74,24 @@ print('{:-^100}\n'.format('Конец задания!'))
 # Пользователь вводит целое положительное число. Найдите самую большую цифру в числе.
 # Для решения используйте цикл while и арифметические операции.
 
-numb = int(input('Введите целое положительное число:'))
+in_txt = 'Введите целое положительное число: '
+while True:
+	try:
+		usr_numb = int(input(in_txt))
+		if str(usr_numb).isdigit() and float(usr_numb) == int(usr_numb) and int(usr_numb) > 0:
+			numb = usr_numb
+			break
+		else:
+			raise ValueError
+	except ValueError:
+		print("Неверный ввод! Введите натуральное число!")
 r = -1
 while numb > 10:
     d = numb % 10
     numb //= 10
     if d > r:
         r = d
-print(r,"\n")
+print(f"Наибольшая цифра в числе ({usr_numb}) - {r}\n")
 print('{:-^100}\n'.format('Конец задания!'))
 
 # End Task 4 ---------------------------------------------------------------------
@@ -76,9 +104,39 @@ print('{:-^100}\n'.format('Конец задания!'))
 # Если фирма отработала с прибылью, вычислите рентабельность выручки (соотношение прибыли к выручке).
 # Далее запросите численность сотрудников фирмы и определите прибыль фирмы в расчете на одного сотрудника.
 
-debit = int(input("Введите дебет:"))
-credit = int(input("Введите кредит:"))
+in_debit = "Введите дебет фирмы: "
+in_credit = "Введите кредит фирмы: "
+er_info = "Неверный ввод! Введите сумму!"
+while True:
+	try:
+		debit = input(in_debit)
+		if str(debit).isdigit() and int(debit) > 0:
+			debit = int(debit)
+			break
+		elif any(debit.replace(x, '').isdigit() for x in ['.', ',']):
+			debit = debit.replace(',', '.')
+			debit = float(debit)
+			break
+		else:
+			raise ValueError
+	except ValueError:
+		print(er_info)
+while True:
+	try:
+		credit = input(in_credit)
+		if str(credit).isdigit() and int(credit) > 0:
+			credit = int(credit)
+			break
+		elif any(credit.replace(x, '').isdigit() for x in ['.', ',']):
+			credit = credit.replace(',', '.')
+			credit = float(credit)
+			break
+		else:
+			raise ValueError
+	except ValueError:
+		print(er_info)
 profit = debit - credit
+print(f"{debit} - {credit} = {profit}")
 if profit > 0:
 	print("Фирма с прибылью!")
 	rent = profit / debit * 100
@@ -99,8 +157,37 @@ print('{:-^100}\n'.format('Конец задания!'))
 # Требуется определить номер дня, на который общий результат спортсмена составить не менее b километров.
 # Программа должна принимать значения параметров a и b и выводить одно натуральное число — номер дня.
 
-a = int(input("Введите начальный результат бега: "))
-b = int(input("Введите желаемый релультат бега за день: "))
+in_a = "Введите начальный результат бега: "
+in_b = "Введите желаемый релультат бега за день: "
+er_info = "Неверный ввод! Введите натуральное число!"
+while True:
+	try:
+		a = input(in_a)
+		if str(a).isdigit() and int(a) > 0:
+			a = int(a)
+			break
+		elif any(a.replace(x, '').isdigit() for x in ['.', ',']):
+			a = a.replace(',', '.')
+			a = float(a)
+			break
+		else:
+			raise ValueError
+	except ValueError:
+		print(er_info)
+while True:
+	try:
+		b = input(in_b)
+		if str(b).isdigit() and int(b) > 0:
+			b = int(b)
+			break
+		elif any(b.replace(x, '').isdigit() for x in ['.', ',']):
+			b = b.replace(',', '.')
+			b = float(b)
+			break
+		else:
+			raise ValueError
+	except ValueError:
+		print(er_info)
 day = 0
 while a < b:
 	a *= 1.1
