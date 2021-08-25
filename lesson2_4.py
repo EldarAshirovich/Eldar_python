@@ -6,13 +6,12 @@ import pydoc
 
 in_txt = "Введите строку из нескольких слов: "
 while True:
-	usr_str = list(input(in_txt).split())
-	l = len(usr_str)
-	if l > 1:
-		break
-	else:
-		print("Нужен хотя бы 1 пробел!!!")
-i = 0
-for v in usr_str:
-	i += 1
-	print(f"{i}. {v[:10]};")
+    usr_str = list(input(in_txt).split())
+    l = len(usr_str)
+    if l > 1:
+        break
+    else:
+        print("Нужен хотя бы 1 пробел!!!")
+for i, v in enumerate(usr_str):
+    i+=1
+    print(f"{i}. {v[:10]};")
