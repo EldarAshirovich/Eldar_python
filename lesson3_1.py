@@ -39,4 +39,3 @@ while True:
 		print(er_info)
 div_res = lambda x, y: x / y
 print(f"Сумма деления чисел {list_div[0]:.2f} / {list_div[1]:.2f} = {div_res(list_div[0], list_div[1]):.2f}")
-
