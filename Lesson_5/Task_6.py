@@ -23,7 +23,7 @@ for el in list:
     summ = 0
     for i in range(1, 4):
         if new_list[i] != '—':
-            num = ''.join([str(el) for el in new_list[i] if el.isdigit()])
+            num = ''.join([el for el in new_list[i] if el.isdigit()])
             summ += int(num)
     dict[new_list[0]] = summ
 print(f"Общее количество занятий по предметам: {dict}")

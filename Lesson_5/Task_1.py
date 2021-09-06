@@ -8,22 +8,12 @@ Autor Sabri Eldar
 """
 
 in_str = 'Введите данные (для остановки введите пустую строку): '
-while True:
-    str = input(in_str)
-    if str == '':
-        with open("task_1.txt") as file:
-            print("Вывод новых данных:")
-            for line in file:
-                print(line, end='')
+with open("task_1.txt", 'w+') as file:
+    while True:
+        str = input(in_str)
+        if str != '':
+            print(f"Вывод новой строки: {str}")
+            file.write(str+'\n')
+        else:    
             print("Скрипт окончен!")
-        break
-    else:
-        try:
-            with open("task_1.txt", 'a+') as file:
-                file.write(str+'\n')
-        except EOFError:
-            print("Произошла ошибка ввода-вывода!")
-        with open("task_1.txt") as file:
-            print("Вывод новых данных:")
-            for line in file:
-                print(line, end='')
+            break
