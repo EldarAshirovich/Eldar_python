@@ -13,14 +13,25 @@ import pydoc
 in_txt = "Введите любое натуранльное число: "
 reit_list = [7, 5, 3, 3, 2]
 while True:
-	try:
-		usr_numb = int(input(in_txt))
-		if str(usr_numb).isdigit() and float(usr_numb) == int(usr_numb) and int(usr_numb) > 0:
-			reit_list.append(usr_numb)
-			print(sorted(reit_list, reverse=True))
-			if len(reit_list) > 10:
-				break
-		else:
-			raise ValueError
-	except ValueError:
-		print("Неверный ввод! Введите натуральное число!")
+    try:
+        usr_numb = int(input(in_txt))
+        if str(usr_numb).isdigit() and float(usr_numb) == int(usr_numb) and int(usr_numb) > 0:
+            # reit_list.append(usr_numb) старая реализация!
+            # print(sorted(reit_list, reverse=True)) старая реализация!
+            for el in range(len(reit_list)):
+                if reit_list[0] < usr_numb:
+                    reit_list.insert(0, usr_numb)
+                    break
+                elif reit_list[-1] > usr_numb:
+                    reit_list.append(usr_numb)
+                    break
+                elif reit_list[el] < usr_numb and reit_list[el - 1] > usr_numb or reit_list[el] == usr_numb:
+                    reit_list.insert(el, usr_numb)
+                    break
+            print(f"Список рейтинга - {reit_list}")
+            if len(reit_list) > 10:
+                break
+        else:
+            raise ValueError
+    except ValueError:
+        print("Неверный ввод! Введите натуральное число!")
