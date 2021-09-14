@@ -35,7 +35,7 @@ class Matrix:
             result.append([])
             for j in range(len(self.matrix[i])):
                 result[i].append(format(self.matrix[i][j] + other.matrix[i][j]))
-        return result
+        return Matrix(result)
 
 list_of_list_1 = [[31, 22], [37, 43], [51, 86]]
 list_of_list_2 = [[3, 5, 32], [2, 4, 6], [-1, 64, -8]]
@@ -52,4 +52,4 @@ print('{:-^50}\n'.format("Вывод матрицы №4 (3х2)"))
 print(Matrix(list_of_list_4))
 print('{:-^50}\n'.format("Сложение матриц №1 + №4 (3x2)"))
 list_of_list_5 = Matrix(list_of_list_1) + Matrix(list_of_list_4)
-print(Matrix(list_of_list_5))
+print(list_of_list_5)
