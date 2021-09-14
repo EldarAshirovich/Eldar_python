@@ -25,28 +25,27 @@ class Cell:
         self.col = col
         if col and col > 0:
             print(f'Создание клетки с количеством ячеек {int(col)}')
+        else:
+            print(f'Клетка не создалась!')
     
     def __add__(self, other):
         result = int(self.col) + int(other.col)
-        return result
+        return Cell(result)
     
     def __sub__(self, other):
         result = int(self.col) - int(other.col)
-        if result > 0:
-            return result
-        else:
-            print('Разность вычитания двух клеток ниже нуля!')
+        return Cell(result)
     
     def __mul__(self, other):
         result = int(self.col) * int(other.col)
-        return result
+        return Cell(result)
     
     def __truediv__(self, other):
         result = int(self.col) / int(other.col)
-        return int(result)
+        return Cell(int(result))
     
     def make_order(self, cel):
-        if self.col:
+        if self.col > 0:
             result = f'Деление ячейки ({self.col}x{cel}): '
             for el in range(self.col):
                 result += '*'
@@ -61,11 +60,11 @@ cel1 = Cell(4) # Создание 1 клетки
 print(cel1.make_order(1)) # Получение ряда ячеек из 1 клетки
 cel2 = Cell(8) # Создание 2 клетки
 print(cel2.make_order(3)) # Получение ряда ячеек из 2 клетки
-cel3 = Cell(cel1 + cel2) # Создание 3 клетки из сложения клетки 1 и клетки 2 
+cel3 = cel1 + cel2 # Создание 3 клетки из сложения клетки 1 и клетки 2 
 print(cel3.make_order(7)) # Получение ряда ячеек из 3 клетки
-cel4 = Cell(cel1-cel2) # Создание 4 клетки из вычитания с ошибкой!
+cel4 = cel1-cel2 # Создание 4 клетки из вычитания с ошибкой!
 print(cel4.make_order(4)) # Получение ряда ячеек из 4 клетки с ошибкой!
-cel5 = Cell(cel1 * cel2) # Создание 5 клетки из умножения 
+cel5 = cel1 * cel2 # Создание 5 клетки из умножения 
 print(cel5.make_order(14)) # Получение ряда ячеек из 5 клетки
-cel6 = Cell(cel5 / cel1) # Создание 6 клетки из деления 
+cel6 = cel5 / cel1 # Создание 6 клетки из деления 
 print(cel6.make_order(3)) # Получение ряда ячеек из 6 клетки
